@@ -1,5 +1,6 @@
 package org.lessons.java.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.lessons.java.demo.model.Pizzeria;
@@ -21,7 +22,7 @@ public class PizzaController {
     @GetMapping
     public String index(Model model) {
 
-        List<Pizzeria> pizzeria = repository.findAll();
+        List<Pizzeria> pizzeria = repository.findAll(); // new ArrayList<>(); --> per testare in caso sia vuoto;
         model.addAttribute("pizze", pizzeria);
         return "pizze/index";
     }
