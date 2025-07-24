@@ -12,29 +12,39 @@
     <th:block th:replace="~{fragment :: bootstrap}"></th:block>
     <th:block th:replace="~{fragment :: navBar}"></th:block>
 
-    <table class="table" th:if="${pizze.size() > 0}">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Descrizione</th>
-                <th scope="col">Image</th>
-                <th scope="col">Price</th>
-                <th scope="col">Click for detail</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="pizza: ${pizze}" th:object="${pizza}">
-                <td scope="row">[[*{name}]]</td>
-                <td>[[*{description}]]</td>
-                <td><img th:src="*{pick}" alt="Pizza image" style="max-width: 150px;"></td>
-                <td>[[*{price}]] [[*{symbol}]]</td>
-                <td><a th:href="@{/pizze/{id}(id=*{id})}">Detail</td>
-            </tr>
-        </tbody>
-    </table>
+    <main>
 
-    <p th:if="${pizze.size() == 0}">No pizze found at the moment</p>
+        <div class="container">
+            <form method="GET" th:action="@{/pizze/searchByName}" class="text-center m-5 mb-5">
+                <input type="text" name="name" placeholder="Cerca per titolo..." th:value="${name}" />
+                <button type="submit">Cerca</button>
+            </form>
 
+            <table class="table" th:if="${pizze.size() > 0}">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Descrizione</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Click for detail</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="pizza: ${pizze}" th:object="${pizza}">
+                        <td scope="row">[[*{name}]]</td>
+                        <td>[[*{description}]]</td>
+                        <td><img th:src="*{pick}" alt="Pizza image" style="max-width: 150px; max-height: 200px;"></td>
+                        <td>[[*{price}]] [[*{symbol}]]</td>
+                        <td><a th:href="@{/pizze/{id}(id=*{id})}">Detail</td> <!--Dettaglio singola pizza-->
+                    </tr>
+                </tbody>
+            </table>
+
+            <p th:if="${pizze.size() == 0}">No pizze found at the moment</p>
+        </div>
+    </main>
 </body>
 
 </html>

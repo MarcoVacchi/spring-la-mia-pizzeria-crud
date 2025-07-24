@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -38,12 +39,17 @@ public class PizzaController {
         return "pizze/show";
     }
 
+    // ricerca
+    @GetMapping("/searchByName")
+    public String searchByName(@RequestParam(name = "name") String name, Model model) {
+        List<Pizzeria> pizzeria = repository.findByNameContainingIgnoreCase(name);
+        model.addAttribute("pizze", pizzeria);
+        model.addAttribute("name", name);
+        return "pizze/index";
+    }
+
 }
-// Mostriamo una singola pizza.
-
-// Ogni pizza dell’elenco avrà quindi un pulsante che se cliccato ci porterà a
-// una pagina che mostrerà i dettagli della pizza scelta. Dobbiamo quindi
-// inviare l’id come parametro dell’URL, recuperarlo nel metodo del controller,
-// caricare i dati della pizza ricercata e passarli come model.
-
-// La view a quel punto li mostrerà all’utente con la grafica che preferiamo.
+// Step 3 - Bonus
+// Nella pagina con l’elenco delle pizze aggiungiamo un campo di testo che se
+// compilato filtrerà le pizze (lato server) aventi come titolo quello inserito
+// dall’utente.
