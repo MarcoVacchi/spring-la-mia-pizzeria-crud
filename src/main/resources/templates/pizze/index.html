@@ -19,6 +19,7 @@
                 <th scope="col">Descrizione</th>
                 <th scope="col">Image</th>
                 <th scope="col">Price</th>
+                <th scope="col">Click for detail</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +28,7 @@
                 <td>[[*{description}]]</td>
                 <td><img th:src="*{pick}" alt="Pizza image" style="max-width: 150px;"></td>
                 <td>[[*{price}]] [[*{symbol}]]</td>
+                <td><a th:href="@{/pizze/{id}(id=*{id})}">Detail</td>
             </tr>
         </tbody>
     </table>
