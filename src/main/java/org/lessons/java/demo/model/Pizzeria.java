@@ -28,6 +28,12 @@ public class Pizzeria {
     @NotBlank(message = "The URLcode mustn't be empty or null or blank")
     private String pick;
 
+    @NotNull
+    private BigDecimal price;
+
+    @NotNull
+    private String symbol;
+
     public Integer getId() {
         return this.id;
     }
@@ -68,8 +74,18 @@ public class Pizzeria {
         this.price = price;
     }
 
-    @NotNull
-    private BigDecimal price;
+    public String getSymbol() {
+        return this.symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + this.description + this.pick + this.price + this.symbol;
+    }
 
 }
 

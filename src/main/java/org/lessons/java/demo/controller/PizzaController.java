@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-@RequestMapping("/pizza")
+@RequestMapping("/pizze")
 
 public class PizzaController {
 
@@ -22,7 +22,7 @@ public class PizzaController {
     public String index(Model model) {
 
         List<Pizzeria> pizzeria = repository.findAll();
-        model.addAttribute("pizza", pizzeria);
+        model.addAttribute("pizze", pizzeria);
         return "pizze/index";
     }
 
