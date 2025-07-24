@@ -25,7 +25,7 @@
             <tr th:each="pizza: ${pizze}" th:object="${pizza}">
                 <td scope="row">[[*{name}]]</td>
                 <td>[[*{description}]]</td>
-                <td>[[*{pick}]]</td>
+                <td><img th:src="*{pick}" alt="Pizza image" style="max-width: 150px;"></td>
                 <td>[[*{price}]] [[*{symbol}]]</td>
             </tr>
         </tbody>
