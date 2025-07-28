@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -29,6 +30,7 @@ public class Pizzeria {
     private String pick;
 
     @NotNull
+    @DecimalMin(value = "3.00", message = "Il prezzo deve essere almeno di 3 euro")
     private BigDecimal price;
 
     @NotNull

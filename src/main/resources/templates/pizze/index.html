@@ -13,9 +13,13 @@
     <th:block th:replace="~{fragment :: navBar}"></th:block>
 
     <main>
+        <h1>Pizze</h1>
+        <div>
+            <a class="me-auto btn btn-primary btn-sm" th:href="@{pizze/create}">Create a new Pizza</a>
+        </div>
 
         <div class="container">
-            <form method="GET" th:action="@{/pizze/searchByName}" class="text-center m-5 mb-5">
+            <form method="get" th:action="@{/pizze/searchByName}" class="text-center m-5 mb-5">
                 <input type="text" name="name" placeholder="Cerca per titolo..." th:value="${name}" />
                 <button type="submit">Cerca</button>
             </form>
