@@ -23,6 +23,7 @@ public class Pizzeria {
     @NotBlank(message = "The name mustn't be empty or null or blank")
     private String name;
 
+    @NotBlank(message = "The description mustn't be empty or null or blank")
     @Lob
     private String description;
 
@@ -33,7 +34,7 @@ public class Pizzeria {
     @DecimalMin(value = "3.00", message = "Il prezzo deve essere almeno di 3 euro")
     private BigDecimal price;
 
-    @NotNull
+    @NotBlank
     private String symbol;
 
     public Integer getId() {
