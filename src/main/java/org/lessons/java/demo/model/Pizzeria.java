@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -20,10 +21,12 @@ public class Pizzeria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "The name mustn't be empty or null or blank")
+    @NotBlank
+    @Min(value = 5, message = "The name mustn't be empty or null or blank, and must be min 5 char")
     private String name;
 
-    @NotBlank(message = "The description mustn't be empty or null or blank")
+    @NotBlank
+    @Min(value = 10, message = "The description mustn't be empty or null or blank, and must be min 10 char")
     @Lob
     private String description;
 
