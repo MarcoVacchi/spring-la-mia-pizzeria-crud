@@ -72,21 +72,36 @@ public class PizzaController {
         return "redirect:/pizze";
     }
 
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        model.addAttribute("pizze", repository.findById(id).get());
+        return "pizze/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String update(@Valid @ModelAttribute("pizze") Pizzeria formPizzeria, BindingResult bindingResult,
+            Model model) {
+        if (bindingResult.hasErrors()) {
+            return "pizze/edit";
+        }
+        repository.save(formPizzeria);
+        return "redirect:/pizze";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id) {
+        repository.deleteById(id);
+        return "redirect:/pizze";
+    }
+
 }
 
-// Step 1
-// Abbiamo la lista delle pizze, abbiamo i dettagli delle pizze...perchè non
-// realizzare la pagina per la creazione di una nuova pizza?
+// Completiamo le pagine di gestione delle nostre pizze!
 
-// Aggiungiamo quindi tutto il codice necessario per mostrare il form per la
-// creazione di una nuova pizza e per il salvataggio dei dati in tabella.
+// Abbiamo la pagina con la lista di tutte le pizze, quella con i dettagli della
+// singola pizza, quella per crearla...cosa manca?
 
-// Nella index creiamo ovviamente il bottone “Crea nuova pizza” che ci porta a
-// questa nuova pagina creata.
-
-// Ricordiamoci che l’utente potrebbe sbagliare inserendo dei dati: gestiamo
-// quindi la validazione! Ad esempio verifichiamo che :
-// i dati della pizza siano tutti presenti
-// il campi di testo non superino una certa lunghezza
-// il prezzo abbia un valore valido (ha senso una pizza con prezzo minore o
-// uguale a zero?)
+// Dobbiamo realizzare :
+// pagina di modifica di una pizza
+// cancellazione di una pizza, cliccando un pulsante presente nella grafica di
+// ogni singolo prodotto mostrato (nella lista in index)
